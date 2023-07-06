@@ -99,3 +99,10 @@ nav{
     font-weight: 100;
     line-height: 0.2;
 }
+
+.post-box1{
+    width: 614px;
+    height: 650px;
+    border: 1px solid #dbdbdb;
+    background-color: white;
+}
