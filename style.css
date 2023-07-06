@@ -57,3 +57,45 @@ nav{
 .margin-left{
     margin-left: 20px;
 }
+
+.margin-right{
+    margin-right: 50px;
+}
+
+.stories-bar{
+    width: 614px;
+    height: 115px;
+    border: 1px solid #dbdbdb;
+    
+    background-color: white;
+}
+
+.stories-align{
+    display: flex;
+    align-items: center;
+    justify-content: space-between 10px;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.story-icons{
+    width: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 18px 10px;
+    /* border: 2px solid red; */
+    
+}
+
+.story-names{
+    display: flex;
+    align-items: center;
+    justify-content: space-between 10px;
+    justify-content: space-between;
+    flex-direction: row;  
+    font-size: 12px;
+    padding: 1px 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    line-height: 0.2;
+}
