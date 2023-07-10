@@ -1,13 +1,3 @@
-const post = {
-    username: "danielchen",
-    imageLink: " ",
-    caption: "this is a post",
-    comments: [],
-    likes: 0,
-    shares: 0,
-    isPublic: false
-}
-
 const outputPostStatus = (post) => {
     const output = `
     POST INFO:
