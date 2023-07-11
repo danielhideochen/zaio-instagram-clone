@@ -33,13 +33,14 @@ nav{
 }
 
 .logo{
-    width: 100px;
+    width: 50px;
+    border-radius: 25px;
 }
 
 .search-input{
     border: 1px solid #dbdbdb;
     background-color: #fafafa;
-    border-radius: 3px;
+    border-radius: 25px;
     padding: 5px 10px;
 }
 
@@ -63,6 +64,7 @@ nav{
 }
 
 .stories-bar{
+    margin: 60px auto;
     width: 614px;
     height: 115px;
     border: 1px solid #dbdbdb;
@@ -83,7 +85,7 @@ nav{
     border-radius: 50%;
     cursor: pointer;
     padding: 18px 10px;
-    /* border: 2px solid red; */
+    /* border: 2px solid rgb(206, 95, 31); */
     
 }
 
@@ -100,9 +102,29 @@ nav{
     line-height: 0.2;
 }
 
-.post-box1{
+.post-box{
+    margin: 60px auto;
     width: 614px;
     height: 650px;
     border: 1px solid #dbdbdb;
     background-color: white;
 }
+
+.post-image{
+    max-width: 614px;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-header{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    justify-content: space-between;
+}
+
+/* .posts{
+    max-width: 975px;
+    display: flex;
+    flex-direction: column;
+} */

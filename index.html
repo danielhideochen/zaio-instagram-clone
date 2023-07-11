@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zaio Instagram</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,7 +14,8 @@
     <nav>
         <div class="inner-nav">
             <img class="logo"
-                src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png" alt="">
+                src="https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/1482/original/101696317_710272486451175_5035120015142027264_n.jpg"
+                alt="">
             <input class="search-input" type="text" placeholder="Search">
             <div class="navbar-icons">
                 <div>
@@ -57,29 +60,58 @@
                     <img class="profile-pic" alt="imharjotsingh's profile picture" data-testid="user-avatar"
                         draggable="false" src="assets/danielpfp.png" />
                 </div>
+                <div>
+                    <button id="show-create-modal" type="button" class="btn btn-primary margin-left">Create Post</button>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div style="position: relative; left: 480px; top: 30px;" class="stories-bar">
-        <div class="stories-align">
-            
-            <img class="story-icons" alt="" data-testid="user-avatar"
-                draggable="false" src="assets/pfp1.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar"
-                draggable="false" src="assets/pfp2.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar"
-                draggable="false" src="assets/pfp3.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar"
-                draggable="false" src="assets/pfp4.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar"
-                draggable="false" src="assets/pfp5.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar"
-                draggable="false" src="assets/pfp6.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar"
-                draggable="false" src="assets/pfp7.png" />
+    <!-- create post modal boostrap code -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">User Name:</label>
+                            <input type="text" class="form-control" id="username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Image Link:</label>
+                            <input type="text" class="form-control" id="imagelink">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Caption:</label>
+                            <textarea class="form-control" id="caption"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="create-post-btn"type="button" class="btn btn-primary">Create Post</button>
+                    <button id="edit-post-btn" type="button" class="btn btn-primary margin-left">Edit Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                
+    <div class="stories-bar">
+        <div class="stories-align">
+
+            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp1.png" />
+            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp2.png" />
+            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp3.png" />
+            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp4.png" />
+            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp5.png" />
+            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp6.png" />
+            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp7.png" />
+
+
         </div>
         <div class="story-names">
             <p>danielchen</p>
@@ -92,11 +124,29 @@
         </div>
     </div>
 
-    <div style="position: relative; left: 480px; top: 80px;" class="post-box1">
+    <main>
+        <div class="posts">
+        <!-- <div class="post-box">
+            <div class="post-header">
+                <p>danielchen</p>
+            </div>
+            <div class="post-image">
+                <img src="https://travel.home.sndimg.com/content/dam/images/travel/fullset/2015/08/03/america-the-beautiful-ss/adirondack-park-new-york-state.jpg.rend.hgtvcom.616.462.suffix/1491580836599.jpeg"
+                    alt="">
+            </div>
+            <div class="caption">
+                <p>caption</p>
+            </div>
+        </div> -->
     </div>
+    </main>
 
-
-    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
     <script src="app.js"></script>
 
 </body>
