@@ -7,139 +7,183 @@
     <title>Zaio Instagram</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-    <nav>
-        <div class="inner-nav">
-            <img class="logo"
-                src="https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/1482/original/101696317_710272486451175_5035120015142027264_n.jpg"
-                alt="">
-            <input class="search-input" type="text" placeholder="Search">
-            <div class="navbar-icons">
-                <div>
-                    <div class="">
-                        <a href="/" tabindex="0"><svg aria-label="Home" class="_8-yf5" fill="#262626" height="22"
-                                viewBox="0 0 48 48" width="22">
+    <section id="firebase-auth-container">
+
+
+    </section>
+
+    <section id="main-app">
+
+        <nav>
+            <div class="inner-nav">
+                <img class="logo"
+                    src="https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/1482/original/101696317_710272486451175_5035120015142027264_n.jpg"
+                    alt="">
+                <input class="search-input" type="text" placeholder="Search">
+                <div class="navbar-icons">
+                    <div>
+                        <div class="">
+                            <a href="/" tabindex="0"><svg aria-label="Home" class="_8-yf5" fill="#262626" height="22"
+                                    viewBox="0 0 48 48" width="22">
+                                    <path
+                                        d="M45.5 48H30.1c-.8 0-1.5-.7-1.5-1.5V34.2c0-2.6-2.1-4.6-4.6-4.6s-4.6 2.1-4.6 4.6v12.3c0 .8-.7 1.5-1.5 1.5H2.5c-.8 0-1.5-.7-1.5-1.5V23c0-.4.2-.8.4-1.1L22.9.4c.6-.6 1.6-.6 2.1 0l21.5 21.5c.3.3.4.7.4 1.1v23.5c.1.8-.6 1.5-1.4 1.5z">
+                                    </path>
+                                </svg></a>
+                        </div>
+                    </div>
+                    <div class="margin-left">
+                        <a class="xWeGp" href="/direct/inbox/" tabindex="0"><svg aria-label="Direct" class="_8-yf5"
+                                fill="#262626" height="22" viewBox="0 0 48 48" width="22">
                                 <path
-                                    d="M45.5 48H30.1c-.8 0-1.5-.7-1.5-1.5V34.2c0-2.6-2.1-4.6-4.6-4.6s-4.6 2.1-4.6 4.6v12.3c0 .8-.7 1.5-1.5 1.5H2.5c-.8 0-1.5-.7-1.5-1.5V23c0-.4.2-.8.4-1.1L22.9.4c.6-.6 1.6-.6 2.1 0l21.5 21.5c.3.3.4.7.4 1.1v23.5c.1.8-.6 1.5-1.4 1.5z">
+                                    d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z">
                                 </path>
                             </svg></a>
+                        <div class="_2g5Gx"></div>
+                    </div>
+                    <div class="margin-left">
+                        <a href="/explore/" tabindex="0"><svg aria-label="Find People" class="_8-yf5" fill="#262626"
+                                height="22" viewBox="0 0 48 48" width="22">
+                                <path clip-rule="evenodd"
+                                    d="M24 0C10.8 0 0 10.8 0 24s10.8 24 24 24 24-10.8 24-24S37.2 0 24 0zm0 45C12.4 45 3 35.6 3 24S12.4 3 24 3s21 9.4 21 21-9.4 21-21 21zm10.2-33.2l-14.8 7c-.3.1-.6.4-.7.7l-7 14.8c-.3.6-.2 1.3.3 1.7.3.3.7.4 1.1.4.2 0 .4 0 .6-.1l14.8-7c.3-.1.6-.4.7-.7l7-14.8c.3-.6.2-1.3-.3-1.7-.4-.5-1.1-.6-1.7-.3zm-7.4 15l-5.5-5.5 10.5-5-5 10.5z"
+                                    fill-rule="evenodd"></path>
+                            </svg></a>
+                    </div>
+                    <div class="margin-left">
+                        <a class="_0ZPOP kIKUG" href="/accounts/activity/"><svg aria-label="Activity Feed"
+                                class="_8-yf5" fill="#262626" height="22" viewBox="0 0 48 48" width="22">
+                                <path
+                                    d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
+                                </path>
+                            </svg></a>
+                        <div class="">
+                            <div class="poA5q" style="margin-left: -423px"></div>
+                        </div>
+                    </div>
+                    <div class="margin-left">
+                        <img class="profile-pic" alt="imharjotsingh's profile picture" data-testid="user-avatar"
+                            draggable="false" src="assets/danielpfp.png" />
+                    </div>
+                    <div>
+                        <button id="show-create-modal" type="button" class="btn btn-primary margin-left">Create
+                            Post</button>
+                        <button id="logout-btn" type="button" class="btn btn-danger margin-left">Logout</button>
                     </div>
                 </div>
-                <div class="margin-left">
-                    <a class="xWeGp" href="/direct/inbox/" tabindex="0"><svg aria-label="Direct" class="_8-yf5"
-                            fill="#262626" height="22" viewBox="0 0 48 48" width="22">
-                            <path
-                                d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z">
-                            </path>
-                        </svg></a>
-                    <div class="_2g5Gx"></div>
-                </div>
-                <div class="margin-left">
-                    <a href="/explore/" tabindex="0"><svg aria-label="Find People" class="_8-yf5" fill="#262626"
-                            height="22" viewBox="0 0 48 48" width="22">
-                            <path clip-rule="evenodd"
-                                d="M24 0C10.8 0 0 10.8 0 24s10.8 24 24 24 24-10.8 24-24S37.2 0 24 0zm0 45C12.4 45 3 35.6 3 24S12.4 3 24 3s21 9.4 21 21-9.4 21-21 21zm10.2-33.2l-14.8 7c-.3.1-.6.4-.7.7l-7 14.8c-.3.6-.2 1.3.3 1.7.3.3.7.4 1.1.4.2 0 .4 0 .6-.1l14.8-7c.3-.1.6-.4.7-.7l7-14.8c.3-.6.2-1.3-.3-1.7-.4-.5-1.1-.6-1.7-.3zm-7.4 15l-5.5-5.5 10.5-5-5 10.5z"
-                                fill-rule="evenodd"></path>
-                        </svg></a>
-                </div>
-                <div class="margin-left">
-                    <a class="_0ZPOP kIKUG" href="/accounts/activity/"><svg aria-label="Activity Feed" class="_8-yf5"
-                            fill="#262626" height="22" viewBox="0 0 48 48" width="22">
-                            <path
-                                d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
-                            </path>
-                        </svg></a>
-                    <div class="">
-                        <div class="poA5q" style="margin-left: -423px"></div>
-                    </div>
-                </div>
-                <div class="margin-left">
-                    <img class="profile-pic" alt="imharjotsingh's profile picture" data-testid="user-avatar"
-                        draggable="false" src="assets/danielpfp.png" />
-                </div>
-                <div>
-                    <button id="show-create-modal" type="button" class="btn btn-primary margin-left">Create Post</button>
-                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- create post modal boostrap code -->
-    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Post</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">User Name:</label>
-                            <input type="text" class="form-control" id="username">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Image Link:</label>
-                            <input type="text" class="form-control" id="imagelink">
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Caption:</label>
-                            <textarea class="form-control" id="caption"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="create-post-btn"type="button" class="btn btn-primary">Create Post</button>
-                    <button id="edit-post-btn" type="button" class="btn btn-primary margin-left">Edit Post</button>
-                </div>
+
+        <div class="stories-bar">
+            <div class="stories-align">
+
+                <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp1.png" />
+                <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp2.png" />
+                <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp3.png" />
+                <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp4.png" />
+                <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp5.png" />
+                <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp6.png" />
+                <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp7.png" />
+
             </div>
-        </div>
-    </div>
-
-    <div class="stories-bar">
-        <div class="stories-align">
-
-            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp1.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp2.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp3.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp4.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp5.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp6.png" />
-            <img class="story-icons" alt="" data-testid="user-avatar" draggable="false" src="assets/pfp7.png" />
-
-
-        </div>
-        <div class="story-names">
-            <p>danielchen</p>
-            <p>danielchen</p>
-            <p>danielchen</p>
-            <p>danielchen</p>
-            <p>danielchen</p>
-            <p>danielchen</p>
-            <p>danielchen</p>
-        </div>
-    </div>
-
-    <main>
-        <div class="posts">
-        <!-- <div class="post-box">
-            <div class="post-header">
+            <div class="story-names">
+                <p>danielchen</p>
+                <p>danielchen</p>
+                <p>danielchen</p>
+                <p>danielchen</p>
+                <p>danielchen</p>
+                <p>danielchen</p>
                 <p>danielchen</p>
             </div>
-            <div class="post-image">
-                <img src="https://travel.home.sndimg.com/content/dam/images/travel/fullset/2015/08/03/america-the-beautiful-ss/adirondack-park-new-york-state.jpg.rend.hgtvcom.616.462.suffix/1491580836599.jpeg"
-                    alt="">
+        </div>
+
+
+        <main>
+            <div class="posts">
+                <!-- <div class="post-box">
+                <div class="post-header">
+                    <p>danielchen</p>
+                </div>
+                <div class="post-image">
+                    <img src="https://travel.home.sndimg.com/content/dam/images/travel/fullset/2015/08/03/america-the-beautiful-ss/adirondack-park-new-york-state.jpg.rend.hgtvcom.616.462.suffix/1491580836599.jpeg"
+                        alt="">
+                </div>
+                <div class="caption">
+                    <p>caption</p>
+                </div>
+            </div> -->
             </div>
-            <div class="caption">
-                <p>caption</p>
+        </main>
+
+        <!-- create post modal boostrap code -->
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Post</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">User Name:</label>
+                                <input type="text" class="form-control" id="username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Image Link:</label>
+                                <input type="text" class="form-control" id="imagelink">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Caption:</label>
+                                <textarea class="form-control" id="caption"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="create-post-btn" type="button" class="btn btn-primary">Create Post</button>
+                        <button id="edit-post-btn" type="button" class="btn btn-primary margin-left">Edit Post</button>
+                    </div>
+                </div>
             </div>
-        </div> -->
-    </div>
-    </main>
+        </div>
+
+    </section>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB1qimVoo63VVhzLwlUgBo09o-mnXJvOLw",
+            authDomain: "daniel-instagram-clone.firebaseapp.com",
+            projectId: "daniel-instagram-clone",
+            storageBucket: "daniel-instagram-clone.appspot.com",
+            messagingSenderId: "1052945475786",
+            appId: "1:1052945475786:web:69240584c380431cffac33"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        console.log(db)
+    </script>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -147,6 +191,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
         integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
         crossorigin="anonymous"></script>
+
+
+    <script src="auth.js"></script>
     <script src="app.js"></script>
 
 </body>

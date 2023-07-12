@@ -6,6 +6,7 @@ const imageLinkInput = document.querySelector("#imagelink");
 const captionInput = document.querySelector("#caption");
 const createPostBtn = document.querySelector("#create-post-btn");
 const editPostBtn = document.querySelector("#edit-post-btn");
+const logoutBtn = document.querySelector("#logout-btn")
 editPostBtn.style.display = "none";
 
 const editBtn = document.querySelector("#edit-btn");
@@ -39,6 +40,9 @@ editPostBtn.addEventListener("click", () => {
     updatePost(postToEditId, imageLinkInput.value, captionInput.value);
     modal.hide();
 });
+logoutBtn.addEventListener("click", () => {
+    handleLogout();
+});
 
 
 
@@ -55,23 +59,30 @@ const outputPostStatus = (post) => {
 
 
 //global variables
-var feed = [
-    {
-    id: 0,
-    username: "danielchen",
-    imageLink: "https://travel.home.sndimg.com/content/dam/images/travel/fullset/2015/08/03/america-the-beautiful-ss/adirondack-park-new-york-state.jpg.rend.hgtvcom.616.462.suffix/1491580836599.jpeg",
-    caption: "so beautiful",
-    likes: 0,
-    comments: [],
-    shares: 0,
-    isPublic: true,
-    createdAt: new Date(),
-    
-},
-];
-
+var feed = [];
 var isEditMode = false;
 var postToEditId = null;
+
+
+const uploadPostToFirebase = (post) => {
+    db.collection("posts").doc(post.id + "").set(post).then(() => {
+        console.log("POST UPLOADED TO FIREBASE")
+    }).catch((error) => {
+        console.log("ERROR", error);
+    });
+};
+
+//accessing data from firebase, the posts that we have created, displaying them
+const getPostsFromFirebase = () => {
+    const postsRef = db.collection("posts");
+    postsRef.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(doc.data());
+            feed.push(doc.data());
+            outputFeed();
+        })
+    });
+};
 
     //create functionality
 const createPost = (imageLink, caption, username) => {
@@ -88,6 +99,7 @@ const createPost = (imageLink, caption, username) => {
         
     }
     console.log("FEED", feed);
+    uploadPostToFirebase(newPost);
     feed.push(newPost);
     outputFeed();
     modal.hide();
@@ -124,6 +136,7 @@ const updatePost = (id, newImageLink, newCaption) => {
         return post;
     })
     feed = updatedFeed;
+    uploadPostToFirebase(feed[id]);
     outputFeed();
     
 }
@@ -173,3 +186,4 @@ const showEditPostModal = (id) => {
 // deletePost(0);
 
 outputFeed();
+getPostsFromFirebase();
