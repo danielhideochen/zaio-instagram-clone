@@ -33,7 +33,7 @@ nav{
 }
 
 .logo{
-    width: 50px;
+    width:45px;
     border-radius: 25px;
 }
 
@@ -68,7 +68,6 @@ nav{
     width: 614px;
     height: 115px;
     border: 1px solid #dbdbdb;
-    
     background-color: white;
 }
 
@@ -121,6 +120,7 @@ nav{
     align-items: center;
     padding: 5px 10px;
     justify-content: space-between;
+    font-weight: 600;
 }
 
 /* .posts{
@@ -133,4 +133,49 @@ button {
     background-color: transparent;
     border: none;
     outline: none;
+    margin-left: 25px;
+  }
+
+  .post-username{
+    padding-right: 460px;
+    padding-top: 18px;
+  }
+
+  .footer-icons{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: space-between;
+    margin-right: 490px;
+    cursor: pointer;
+
+  }
+
+  .caption{
+    display: flex;
+    flex-direction: row;
+    font-size: 13px;
+  }
+
+  .caption-user{
+    font-weight: 600;
+    padding-right: 8px;
+    padding-left: 10px;
+    font-size: 13px;
+  }
+
+  .add-comment{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 613px;
+    margin-top: 72px;  
+  }
+
+  .likes{
+    font-size: 13px;
+    font-weight: 600;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 10px;
   }
