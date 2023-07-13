@@ -7,6 +7,7 @@ const captionInput = document.querySelector("#caption");
 const createPostBtn = document.querySelector("#create-post-btn");
 const editPostBtn = document.querySelector("#edit-post-btn");
 const logoutBtn = document.querySelector("#logout-btn")
+const deletePostBtn = document.querySelector("#delete-post-btn")
 editPostBtn.style.display = "none";
 
 const editBtn = document.querySelector("#edit-btn");
@@ -28,6 +29,7 @@ createPostBtn.addEventListener("click", () => {
 //we not have access to these functions
 showCreateModal.addEventListener("click", () => {
     isEditMode = false;
+    deletePostBtn.style.display = "none";
     createPostBtn.style.display = "block";
     editPostBtn.style.display = "none";
     usernameInput.value = "";
@@ -43,6 +45,12 @@ editPostBtn.addEventListener("click", () => {
 logoutBtn.addEventListener("click", () => {
     handleLogout();
 });
+
+deletePostBtn.addEventListener("click", () => {
+    console.log("delete post button clicked");
+    deletePostFromFirebase();
+    modal.hide();
+  });
 
 
 
@@ -113,7 +121,11 @@ const outputFeed = () => {
 
         <div class="post-header">
             <p>${post.username}</p>
-            <button class="btn btn-sm btn-primary" onclick="showEditPostModal(${post.id})" >Edit</button>
+            <button onclick="showEditPostModal(${post.id})" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+            </svg>
+            </button>
         </div>
         <div class="post-image">
             <img src="${post.imageLink}" alt="">
@@ -142,18 +154,30 @@ const updatePost = (id, newImageLink, newCaption) => {
 }
 
 const deletePost = (id) => {
-    const updatedFeed = feed.filter((post) => {
-        if(post.id !== id){
-            return post;
-        }
-    });
+    const updatedFeed = feed.filter((post) => post.id !== id);
     feed = updatedFeed;
-    // outputFeed(feed);
-}
+    outputFeed();
+  };
+
+const deletePostFromFirebase = () => {
+    const postToDelete = feed[postToEditId];
+    db.collection("posts")
+      .doc(postToDelete.id.toString())
+      .delete()
+      .then(() => {
+        console.log("Post deleted from Firebase");
+        deletePost(postToEditId);
+      })
+      .catch((error) => {
+        console.log("Error deleting post from Firebase: ", error);
+      });
+  };
+
 
 const showEditPostModal = (id) => {
     postToEditId = id;
     isEditMode = true;
+    deletePostBtn.style.display = "block";
     createPostBtn.style.display = "none";
     editPostBtn.style.display = "block";
     const postToEdit = feed[id];
@@ -163,27 +187,6 @@ const showEditPostModal = (id) => {
     captionInput.value = postToEdit.caption;
     modal.show();
 }
-
-
-// createPost("https://travel.home.sndimg.com/content/dam/images/travel/fullset/2015/08/03/america-the-beautiful-ss/adirondack-park-new-york-state.jpg.rend.hgtvcom.616.462.suffix/1491580836599.jpeg", 
-// "so beautiful", 
-// "danniel_chenn");
-// createPost("https://travel.home.sndimg.com/content/dam/images/travel/fullset/2015/08/03/america-the-beautiful-ss/adirondack-park-new-york-state.jpg.rend.hgtvcom.616.462.suffix/1491580836599.jpeg", 
-// "yo", 
-// "cody");
-// createPost("https://travel.home.sndimg.com/content/dam/images/travel/fullset/2015/08/03/america-the-beautiful-ss/adirondack-park-new-york-state.jpg.rend.hgtvcom.616.462.suffix/1491580836599.jpeg", 
-// "hey", 
-// "derek");
-// createPost("https://travel.home.sndimg.com/content/dam/images/travel/fullset/2015/08/03/america-the-beautiful-ss/adirondack-park-new-york-state.jpg.rend.hgtvcom.616.462.suffix/1491580836599.jpeg", 
-// "mountains", 
-// "isaiah");
-// createPost("https://travel.home.sndimg.com/content/dam/images/travel/fullset/2015/08/03/america-the-beautiful-ss/adirondack-park-new-york-state.jpg.rend.hgtvcom.616.462.suffix/1491580836599.jpeg", 
-// "vacation", 
-// "johnny");
-
-// updatePost(2, "www.imageLink", "SpaceX next alnch soon!");
-// deletePost(4);
-// deletePost(0);
 
 outputFeed();
 getPostsFromFirebase();

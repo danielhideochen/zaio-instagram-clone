@@ -128,3 +128,9 @@ nav{
     display: flex;
     flex-direction: column;
 } */
+
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
